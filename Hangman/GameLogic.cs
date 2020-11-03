@@ -20,7 +20,7 @@ namespace Hangman
 
     class GameLogic
     {
-        private int lives = 5;
+        protected int lives = 5;
         private char[] letterArray;
         private string filePath;
         protected string[] fileContents;
@@ -29,16 +29,16 @@ namespace Hangman
         protected KeyValuePair<string, string> drawnPair;
         protected bool[] guessArray;
 
+        public void EndGame()
+        {
+            isRunning = false;
+        }
+
         protected GameLogic(string filePath)
         {
             this.filePath = filePath;
             LoadFileData();
             SplitFileData();
-        }
-
-        private void LoadFileData()
-        {
-            fileContents = File.ReadAllLines(this.filePath);
         }
 
         protected void SplitFileData()
@@ -60,11 +60,6 @@ namespace Hangman
             drawnPair = new KeyValuePair<string, string>(country, capitol);
         }
 
-        public void EndGame()
-        {
-            isRunning = false;
-        }
-
         protected void InitGuessArray()
         {
             guessArray = new bool[drawnPair.Value.Length];
@@ -72,6 +67,14 @@ namespace Hangman
             {
                 guessArray[i] = false;
             }
+        }
+        protected void GuessSingleLetter() { }
+
+        protected void GuessCity() { }
+
+        private void LoadFileData()
+        {
+            fileContents = File.ReadAllLines(this.filePath);
         }
     }
 }

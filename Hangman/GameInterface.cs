@@ -8,16 +8,18 @@ namespace Hangman
     class GameInterface : GameLogic
     {
         double elapsedTime;
-        public GameInterface(string filePath) : base(filePath){ }
-        
+        public GameInterface(string filePath) : base(filePath) { }
+
         public void StartGame()
         {
             DrawPair();
             Console.WriteLine("Game has started. The topic of game is: Country capitols on Earth.");
+
             var watch = System.Diagnostics.Stopwatch.StartNew();
             InitGuessArray();
             StartGameLoop();
             watch.Stop();
+
             elapsedTime = watch.ElapsedMilliseconds / 1000;
             DisplayFinalResult();
         }
@@ -29,8 +31,25 @@ namespace Hangman
 
         private void StartGameLoop()
         {
+            bool playerCanGuess = true;
 
-            for(int i = 0; i < drawnPair.Value.Length; i++)
+            while (playerCanGuess)
+            {
+                DisplayCurrentResult();
+                LetUserGuess();
+
+                if (lives <= 0)
+                {
+                    PlayerHasLost();
+                    playerCanGuess = false;
+                }
+            }
+        }
+
+        private void DisplayCurrentResult()
+        {
+            Console.WriteLine("Current result is: ");
+            for (int i = 0; i < drawnPair.Value.Length; i++)
             {
                 if (!guessArray[i])
                 {
@@ -38,9 +57,30 @@ namespace Hangman
                 }
                 else
                 {
-                    Console.WriteLine(drawnPair.Value[i]);
+                    Console.Write(drawnPair.Value[i]);
                 }
             }
+        }
+
+        private void LetUserGuess()
+        {
+            Console.WriteLine("Would you like to enter single letter or whole city name? ");
+            Console.WriteLine("Enter 1 for single letter or\nEnter 0 for whole city name: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    GuessSingleLetter();
+                    break;
+                case "0":
+                    GuessCity();
+                    break;
+            }
+        }
+
+        private void PlayerHasLost()
+        {
+
         }
 
         
