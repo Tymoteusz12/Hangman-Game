@@ -1,45 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Hangman
 {
-    class Country
-    {
-        public string name;
-        public string capital;
-
-        public Country(string name, string capital)
-        {
-            this.name = name;
-            this.capital = capital;
-        }
-    }
     class FilesManager
     {
         private string filePath;
+        private string scoreFilePath;
         private string[] fileContents;
+        private string[] scoreFileContents;
         private List<Country> countries;
+        public List<Score> scores;
 
-        public FilesManager(string filePath)
+        public FilesManager(string filePath, string scoreFilePath = "./text/HighScores.txt")
         {
             this.filePath = filePath;
-            LoadFileData();
-            SplitFileData();
+            this.scoreFilePath = scoreFilePath;
+            LoadFilesData();
+            SplitCountryData();
+            SplitScoresData();
         }
 
-        private void LoadFileData()
+        public void SaveScoreToFile(List<Score> scoresToSave)
         {
-            fileContents = File.ReadAllLines(this.filePath);
+            List<string> linesToWrite = new List<string>();
+            foreach (Score scoreInstance in scoresToSave) 
+                linesToWrite.Add(scoreInstance.name + " | " + scoreInstance.date + " | " + scoreInstance.time + " | " + scoreInstance.city + " | " + scoreInstance.score);
+
+            File.WriteAllLines(scoreFilePath, linesToWrite.ToArray());
         }
 
-        protected void SplitFileData()
+        private void LoadFilesData()
+        {
+            fileContents = File.ReadAllLines(filePath);
+            scoreFileContents = File.ReadAllLines(scoreFilePath);
+        }
+
+        private void SplitCountryData()
         {
             countries = new List<Country>();
 
-            foreach (string word in fileContents)
-                countries.Add(new Country(word.Split(" | ")[0], word.Split(" | ")[1]));
+            foreach (string line in fileContents)
+                countries.Add(new Country(line.Split(" | ")[0], line.Split(" | ")[1]));
+        }
+
+        private void SplitScoresData()
+        {
+            scores = new List<Score>();
+
+            foreach (string line in scoreFileContents)
+                scores.Add(new Score(line.Split(" | ")[0], line.Split(" | ")[1], line.Split(" | ")[2], line.Split(" | ")[3], line.Split(" | ")[4]));
         }
 
         public KeyValuePair<string, string> DrawCity()
@@ -47,8 +58,8 @@ namespace Hangman
             Random rnd = new Random();
             int randomInteger = rnd.Next(0, fileContents.Length);
 
-            string country = countries[randomInteger].name;
-            string capital = countries[randomInteger].capital;
+            string country = countries[randomInteger].name.ToUpper();
+            string capital = countries[randomInteger].capital.ToUpper();
 
             return new KeyValuePair<string, string>(country, capital);
         }

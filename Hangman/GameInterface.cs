@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Hangman
 {
+
     class GameInterface : GameLogic
     {
-        double elapsedTime;
+        string[] hangman = new string[] {
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t\t  | <=== This is gibbet!\n\t\t\t  |\n\t\t\t  |\n\t\t\t  |\n\t\t==========\n",
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t O\t  | <=== This is Hangman! Help him!\n\t\t\t  |\n\t\t\t  |\n\t\t\t  |\n\t\t==========\n",
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t O\t  | <=== This is Hangman! Help him!\n\t\t |\\\t  |\n\t\t\t  |\n\t\t\t  |\n\t\t==========\n",
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t O\t  | <=== This is Hangman! Help him!\n\t\t/|\\\t  |\n\t\t |\t  |\n\t\t\t  |\n\t\t==========\n",
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t O\t  | <=== This is Hangman! Help him!\n\t\t/|\\\t  |\n\t\t |\t  |\n\t\t/ \t  |\n\t\t==========\n",
+        "\t\t + ------ + \n \t\t |\t  |\n\t\t O\t  | <=== Luckily this is only puppet!\n\t\t/|\\\t  |\n\t\t |\t  |\n\t\t/ \\\t  |\n\t\t==========\n",
+        };
+
         public bool isRunning = true;
         public GameInterface(string filePath) : base(filePath) { }
 
@@ -18,11 +28,14 @@ namespace Hangman
             StartGameLoop();
             watch.Stop();
             elapsedTime = watch.ElapsedMilliseconds / 1000;
+            DisplayFinalResult(CheckIfPlayerWon());
+            AskIfPlayAgain();
         }
         public void EndGame()
         {
             isRunning = false;
         }
+
         private void StartGameLoop()
         {
             bool playerWon = false;
@@ -36,38 +49,81 @@ namespace Hangman
                 {
                     Console.WriteLine(stateMessage);
                     DisplayLivesLeft();
-                    DisplayMissedLetters();
-                    DisplayMissedCities();
                     DrawHangman();
                     DisplayCurrentResult();
+                    DisplayMissedLetters();
+                    DisplayMissedCities();
                     if (lives == 1) ShowHint();
                     LetUserGuess();
                 }
-
                 playerWon = CheckIfPlayerWon();
             }
+        }
 
-            DisplayFinalResult(playerWon);
-            AskIfPlayAgain();
+        public void ShowHighScore()
+        {
+            Console.WriteLine("\t| Name\t\t|\tDate\t\t|\tElapsed time\t|\tGuessed city\t\t|\tScore\t |\n");
+
+            foreach (Score scoreInstance in highScores)
+                Console.WriteLine( "\t| " + scoreInstance.name + " \t| " + scoreInstance.date + " \t|\t " + scoreInstance.time + " \t\t|\t " + scoreInstance.city + " \t|\t" + scoreInstance.score + "\t |");
         }
 
         private void DisplayFinalResult(bool playerWon)
         {
             Console.Clear();
+
             if (playerWon)
             {
-                Console.WriteLine("\n\tYou won! The city was capital of: " + drawnPair.Key + ", " + drawnPair.Value + ".\n");
-                Console.WriteLine("You managed to guess city in : " + elapsedTime + " s");
-                Console.WriteLine("You guessed after " + hitLetters.ToArray().Length + " letters!");
-                DrawHangman();
+                ShowWinInterface();
+                ShowHighScore();
+                SaveScore();
+                highScores = highScores.Take(10).ToList();
             }
+
             else
             {
-                Console.WriteLine("\n\tYou lost :(. The city was: " + drawnPair.Value + ". This city is capital of " + drawnPair.Key + ".\n");
-                DisplayMissedLetters();
-                DisplayMissedCities();
-                DrawHangman();
+                ShowHighScore();
+                ShowLoseInterface();
             }
+        }
+
+        private void ShowWinInterface()
+        {
+            Console.WriteLine("\n\tYou won! The city was capital of: " + drawnPair.Key + ", " + drawnPair.Value + ".\n");
+            Console.WriteLine("\tYou managed to guess city in : " + elapsedTime + " s");
+            Console.WriteLine("\tYou guessed after " + hitLetters.ToArray().Length + " letters!");
+            Console.WriteLine("\tYou scored: " + CountPlayerScore() + " score and saved Hangman!\n");
+        }
+
+        private void SaveScore()
+        {
+            Console.WriteLine("\n\tWould you like to save your score? Enter 1 for yes, enter 0 for no: ");
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    EnterData();
+                    break;
+                case "0":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void EnterData()
+        {
+            Console.WriteLine("Enter your name: ");
+            string name = Console.ReadLine();
+
+            highScores.Add(new Score(name, DateTime.Now.ToString(), ((int)elapsedTime).ToString(), drawnPair.Value, CountPlayerScore().ToString()));
+        }
+
+        private void ShowLoseInterface()
+        {
+            Console.WriteLine("\n\tYou lost :(. The city was: " + drawnPair.Value + ". This city is capital of " + drawnPair.Key + ".\n");
+            DisplayMissedLetters();
+            DisplayMissedCities();
+            DrawHangman();
         }
 
         private void DisplayLivesLeft()
@@ -114,7 +170,12 @@ namespace Hangman
 
         private void DrawHangman()
         {
-
+            int position;
+            if (lives >= 0)
+                position = 5 - lives;
+            else
+                position = 5;
+            Console.WriteLine(hangman[position]);
         }
 
         private void LetUserGuess()
