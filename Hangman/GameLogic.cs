@@ -8,18 +8,12 @@ namespace Hangman
     {
         protected int lives;
         protected string stateMessage;
-        public bool isRunning = true;
         protected KeyValuePair<string, string> drawnPair;
         protected bool[] guessArray;
         protected List<char> missedLetters = new List<char>();
         protected List<char> hitLetters = new List<char>();
         protected List<string> missedCities = new List<string>();
         private FilesManager manageFiles;
-
-        public void EndGame()
-        {
-            isRunning = false;
-        }
 
         protected GameLogic(string filePath)
         {

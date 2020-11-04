@@ -8,6 +8,7 @@ namespace Hangman
     class GameInterface : GameLogic
     {
         double elapsedTime;
+        public bool isRunning = true;
         public GameInterface(string filePath) : base(filePath) { }
 
         public void StartGame()
@@ -18,26 +19,10 @@ namespace Hangman
             watch.Stop();
             elapsedTime = watch.ElapsedMilliseconds / 1000;
         }
-
-        private void DisplayFinalResult(bool playerWon)
+        public void EndGame()
         {
-            Console.Clear();
-            if (playerWon)
-            {
-                Console.WriteLine("\n\tYou won! The city was capital of: " + drawnPair.Key + ", " + drawnPair.Value + ".\n");
-                Console.WriteLine("You managed to guess city in : " + elapsedTime + " s");
-                Console.WriteLine("You guessed after " + hitLetters.ToArray().Length + " letters!");
-                DrawHangman();
-            }
-            else
-            {
-                Console.WriteLine("\n\tYou lost :(. The city was: " + drawnPair.Value + ". This city is capital of " + drawnPair.Key + ".\n");
-                DisplayMissedLetters();
-                DisplayMissedCities();
-                DrawHangman();
-            }
+            isRunning = false;
         }
-
         private void StartGameLoop()
         {
             bool playerWon = false;
@@ -59,13 +44,30 @@ namespace Hangman
                     LetUserGuess();
                 }
 
-                
-
                 playerWon = CheckIfPlayerWon();
             }
 
             DisplayFinalResult(playerWon);
             AskIfPlayAgain();
+        }
+
+        private void DisplayFinalResult(bool playerWon)
+        {
+            Console.Clear();
+            if (playerWon)
+            {
+                Console.WriteLine("\n\tYou won! The city was capital of: " + drawnPair.Key + ", " + drawnPair.Value + ".\n");
+                Console.WriteLine("You managed to guess city in : " + elapsedTime + " s");
+                Console.WriteLine("You guessed after " + hitLetters.ToArray().Length + " letters!");
+                DrawHangman();
+            }
+            else
+            {
+                Console.WriteLine("\n\tYou lost :(. The city was: " + drawnPair.Value + ". This city is capital of " + drawnPair.Key + ".\n");
+                DisplayMissedLetters();
+                DisplayMissedCities();
+                DrawHangman();
+            }
         }
 
         private void DisplayLivesLeft()
