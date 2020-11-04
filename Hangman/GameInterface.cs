@@ -55,10 +55,11 @@ namespace Hangman
                     DisplayMissedCities();
                     DrawHangman();
                     DisplayCurrentResult();
+                    if (lives == 1) ShowHint();
                     LetUserGuess();
                 }
 
-                if (lives == 1) ShowHint();
+                
 
                 playerWon = CheckIfPlayerWon();
             }

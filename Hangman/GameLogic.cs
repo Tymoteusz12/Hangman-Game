@@ -8,7 +8,6 @@ namespace Hangman
     {
         protected int lives;
         protected string stateMessage;
-        protected List<Country> countries;
         public bool isRunning = true;
         protected KeyValuePair<string, string> drawnPair;
         protected bool[] guessArray;
