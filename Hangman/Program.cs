@@ -16,19 +16,19 @@ namespace Hangman
 
             while (game.isRunning)
             {
-                string selection = Console.ReadLine();
+                switch (Console.ReadLine()) {
 
-                if (selection == "1")
-                {
-                    game.StartGame();
-                }
-                else if (selection == "0")
-                {
-                    game.EndGame();
-                }
-                else
-                {
-                    Console.WriteLine("Your input seem to be invalid. Try again.");
+                    case "1":
+                        game.StartGame();
+                        break;
+
+                    case "0":
+                        game.EndGame();
+                        break;
+
+                    default: 
+                        Console.WriteLine("Your input seem to be invalid. Try again.");
+                        break;
                 }
             }
         }
