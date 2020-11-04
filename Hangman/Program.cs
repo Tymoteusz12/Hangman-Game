@@ -12,7 +12,7 @@ namespace Hangman
 
             GameInterface game = new GameInterface(filePath);
            
-            Console.WriteLine("\tWelcome to Hangman game! Would you like to proceed?\n\tEnter 1 to start the game, enter 2 to show highscores or 0 to exit application.");
+            Console.WriteLine("\n\tWelcome to Hangman game! Would you like to proceed?\n\tEnter 1 to start the game, enter 2 to show highscores or 0 to exit application.");
 
             while (game.isRunning)
             {

@@ -62,10 +62,11 @@ namespace Hangman
 
         public void ShowHighScore()
         {
-            Console.WriteLine("\t| Name\t\t|\tDate\t\t|\tElapsed time\t|\tGuessed city\t\t|\tScore\t |\n");
+            Console.WriteLine("\n\t------------------------------------------ High score ---------------------------------------------------- ");
+            Console.WriteLine("\t| Name\t\t|\tDate\t\t|\tElapsed time\t|\tGuessed city\t|\tScore\t |\n");
 
             foreach (Score scoreInstance in highScores)
-                Console.WriteLine( "\t| " + scoreInstance.name + " \t| " + scoreInstance.date + " \t|\t " + scoreInstance.time + " \t\t|\t " + scoreInstance.city + " \t|\t" + scoreInstance.score + "\t |");
+                Console.WriteLine( "\t| " + scoreInstance.name + " \t| " + scoreInstance.date + " \t|\t " + scoreInstance.time + " \t\t|\t " + scoreInstance.city + "      \t|\t" + scoreInstance.score + "\t |");
         }
 
         private void DisplayFinalResult(bool playerWon)

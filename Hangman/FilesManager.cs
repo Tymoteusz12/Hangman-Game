@@ -6,7 +6,7 @@ namespace Hangman
 {
     class FilesManager
     {
-        private string filePath;
+        private string citiesFilePath;
         private string scoreFilePath;
         private string[] fileContents;
         private string[] scoreFileContents;
@@ -15,7 +15,7 @@ namespace Hangman
 
         public FilesManager(string filePath, string scoreFilePath = "./text/HighScores.txt")
         {
-            this.filePath = filePath;
+            this.citiesFilePath = filePath;
             this.scoreFilePath = scoreFilePath;
             LoadFilesData();
             SplitCountryData();
@@ -33,8 +33,21 @@ namespace Hangman
 
         private void LoadFilesData()
         {
-            fileContents = File.ReadAllLines(filePath);
-            scoreFileContents = File.ReadAllLines(scoreFilePath);
+            if(File.Exists(citiesFilePath))
+                fileContents = File.ReadAllLines(citiesFilePath);
+            else
+            {
+                Console.WriteLine("Can't find file at path: " + citiesFilePath + "\nProgram shut down.");
+                Environment.Exit(1);
+            }
+
+            if(File.Exists(scoreFilePath))
+                scoreFileContents = File.ReadAllLines(scoreFilePath);
+            else
+            {
+                Console.WriteLine("Can't find file at path: " + scoreFilePath + "\nProgram shut down.");
+                Environment.Exit(1);
+            }
         }
 
         private void SplitCountryData()
