@@ -150,7 +150,7 @@ I choosed backend path due to my small interest in cybersecurity.
 Also I tried some Front-end, but it was a little bit to high level - I prefer coding 
 on lower levels and closer to the machines\servers. 
 
-I also think that making money for programming is also important.
+I also think that making money from programming is also important.
 I want to ensure stable and comfortable future for me. Programming is well paid job.
 
 I must not hide, that Motorola Academy started to interest me. 
