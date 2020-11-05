@@ -13,16 +13,16 @@ namespace Hangman
         private List<Country> countries;
         public List<Score> scores;
 
-        public FilesManager(string filePath, string scoreFilePath = "./text/HighScores.txt")
+        public FilesManager(string filePath, string scoreFilePath = "./FilesManagment/text/HighScores.txt")
         {
             this.citiesFilePath = filePath;
             this.scoreFilePath = scoreFilePath;
-            LoadFilesData();
-            SplitCountryData();
-            SplitScoresData();
+            loadFilesData();
+            splitCountryData();
+            splitScoresData();
         }
 
-        public void SaveScoreToFile(List<Score> scoresToSave)
+        public void saveScoreToFile(List<Score> scoresToSave)
         {
             List<string> linesToWrite = new List<string>();
             foreach (Score scoreInstance in scoresToSave) 
@@ -31,7 +31,7 @@ namespace Hangman
             File.WriteAllLines(scoreFilePath, linesToWrite.ToArray());
         }
 
-        private void LoadFilesData()
+        private void loadFilesData()
         {
             if(File.Exists(citiesFilePath))
                 fileContents = File.ReadAllLines(citiesFilePath);
@@ -50,7 +50,7 @@ namespace Hangman
             }
         }
 
-        private void SplitCountryData()
+        private void splitCountryData()
         {
             countries = new List<Country>();
 
@@ -58,7 +58,7 @@ namespace Hangman
                 countries.Add(new Country(line.Split(" | ")[0], line.Split(" | ")[1]));
         }
 
-        private void SplitScoresData()
+        private void splitScoresData()
         {
             scores = new List<Score>();
 
@@ -66,12 +66,12 @@ namespace Hangman
                 scores.Add(new Score(line.Split(" | ")[0], line.Split(" | ")[1], line.Split(" | ")[2], line.Split(" | ")[3], line.Split(" | ")[4]));
         }
 
-        public KeyValuePair<string, string> DrawCity()
+        public KeyValuePair<string, string> drawCity()
         {
             Random rnd = new Random();
             int randomInteger = rnd.Next(0, fileContents.Length);
 
-            string country = countries[randomInteger].name.ToUpper();
+            string country = countries[randomInteger].name;
             string capital = countries[randomInteger].capital.ToUpper();
 
             return new KeyValuePair<string, string>(country, capital);

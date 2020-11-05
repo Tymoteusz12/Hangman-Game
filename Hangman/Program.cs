@@ -8,7 +8,7 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
-            const string filePath = "./text/countries_and_capitals.txt";
+            const string filePath = "./FilesManagment/text/countries_and_capitals.txt";
 
             GameInterface game = new GameInterface(filePath);
            
@@ -16,19 +16,20 @@ namespace Hangman
 
             while (game.isRunning)
             {
-                switch (Console.ReadLine()) {
+                switch (game.EnterInput()) {
                     
                     case "0":
-                        game.EndGame();
-                        game.SaveScoreToFile();
+                        game.endGame();
+                        game.saveScoreToFile();
+                        Console.WriteLine("\n\tThank you for playing!");
                         break;
 
                     case "1":
-                        game.StartGame();
+                        game.startGame();
                         break;
 
                     case "2":
-                        game.ShowHighScore();
+                        game.showHighScore();
                         Console.WriteLine("\n\tEnter 1 to start the game, enter 2 to show highscores or 0 to exit application.");
                         break;
 

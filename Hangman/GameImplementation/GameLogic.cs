@@ -18,31 +18,27 @@ namespace Hangman
         protected List<char> hitLetters = new List<char>();
         protected List<string> missedCities = new List<string>();
         private FilesManager manageFiles;
-        private ScoreWeights scoreWeights;
+        private ScoreWeights scoreWeights = new ScoreWeights();
 
         protected List<Score> highScores;
 
         protected GameLogic(string filePath)
         {
-            missedLetters = new List<char>();
-            hitLetters = new List<char>();
-            missedCities = new List<string>();
             manageFiles = new FilesManager(filePath);
-            scoreWeights = new ScoreWeights();
             highScores = new List<Score>(manageFiles.scores).OrderByDescending(o => o.score).ToList();
         }
 
-        public void SaveScoreToFile()
+        public void saveScoreToFile()
         {
-            manageFiles.SaveScoreToFile(highScores);
+            manageFiles.saveScoreToFile(highScores);
         }
 
-        protected void DrawPair()
+        protected void drawPair()
         {
-            drawnPair = manageFiles.DrawCity();
+            drawnPair = manageFiles.drawCity();
         }
 
-        protected void InitGuessArray()
+        protected void initGuessArray()
         {
             guessArray = new bool[drawnPair.Value.Length];
             for(int i = 0; i < drawnPair.Value.Length; i++)
@@ -54,27 +50,27 @@ namespace Hangman
             }
         }
 
-        protected void RestartAllStates()
+        protected void restartAllStates()
         {
             lives = 5;
             stateMessage = "\tLet's play!";
             missedLetters.Clear();
             hitLetters.Clear();
             missedCities.Clear();
-            DrawPair();
-            InitGuessArray();
+            drawPair();
+            initGuessArray();
         }
 
-        protected void GuessSingleLetter() 
+        protected void guessSingleLetter() 
         {
             Console.WriteLine("\tPlease enter your single letter guess: ");
-            string playerGuess = Console.ReadLine();
+            string playerGuess = EnterInput();
             playerGuess = playerGuess.ToUpper();
-            if (ValidateCharInput(playerGuess))
-                CheckIfPlayerHit(playerGuess[0]);
+            if (validateCharInput(playerGuess))
+                checkIfPlayerHit(playerGuess[0]);
         }
 
-        private bool ValidateCharInput(string playerGuess)
+        private bool validateCharInput(string playerGuess)
         {
             char playerInput = playerGuess[0];
 
@@ -88,10 +84,9 @@ namespace Hangman
             return true;
         }
 
-        private void CheckIfPlayerHit(char playerInput)
+        private void checkIfPlayerHit(char playerInput)
         {
             List<int> indexesList = new List<int>();
-            int counter = 0;
             if (hitLetters.Contains(playerInput)) 
                 stateMessage = "\n\tYou already had used this letter and hit!\n";
 
@@ -100,6 +95,7 @@ namespace Hangman
 
             else
             {
+                int counter = 0;
                 foreach (char letter in drawnPair.Value)
                 {
                     if (letter == playerInput)
@@ -111,18 +107,18 @@ namespace Hangman
                 if (indexesList.Count > 0) 
                 {
                     stateMessage = "\n\tYou hit! Nice!\n";
-                    ReplaceUnderscores(indexesList.ToArray());
+                    replaceUnderscores(indexesList.ToArray());
                 }
                 else 
                 {
                     stateMessage = "\n\tYou missed and lost life. Try again!\n";
                     lives--;
-                    AddToMissedLetters(playerInput);
+                    addToMissedLetters(playerInput);
                 }
             }
         }
 
-        private void ReplaceUnderscores(int[] indexesArray)
+        private void replaceUnderscores(int[] indexesArray)
         {
             foreach (int index in indexesArray)
             {
@@ -131,22 +127,22 @@ namespace Hangman
             }
         }
 
-        private void AddToMissedLetters(char playerInput)
+        private void addToMissedLetters(char playerInput)
         {
             if (!missedLetters.Contains(playerInput))
                 missedLetters.Add(playerInput);
         }
 
-        protected void GuessCity()
+        protected void guessCity()
         {
             Console.WriteLine("Please enter your city guess: ");
-            string cityGuess = Console.ReadLine();
+            string cityGuess = EnterInput();
             cityGuess = cityGuess.ToUpper();
-            if (ValidateStringInput(cityGuess))
-                CheckIfPlayerHit(cityGuess);
+            if (validateStringInput(cityGuess))
+                checkIfPlayerHit(cityGuess);
         }
 
-        private bool ValidateStringInput(string playerInput)
+        private bool validateStringInput(string playerInput)
         {
             if (playerInput.Length != drawnPair.Value.Length)
             {
@@ -156,7 +152,7 @@ namespace Hangman
             return playerInput.Length == drawnPair.Value.Length;
         }
 
-        private void CheckIfPlayerHit(string playerInput)
+        private void checkIfPlayerHit(string playerInput)
         {
             if (missedCities.Contains(playerInput))
                 stateMessage = "\n\tYou already had used this city and missed!\n";
@@ -172,18 +168,18 @@ namespace Hangman
                 {
                     stateMessage = "\n\tYou entered wrong city! As a result you lost two lives!\n";
                     lives -= 2;
-                    AddToMissedCities(playerInput);
+                    addToMissedCities(playerInput);
                 }
             }
         }
 
-        private void AddToMissedCities(string playerInput)
+        private void addToMissedCities(string playerInput)
         {
             if (!missedCities.Contains(playerInput))
                 missedCities.Add(playerInput);
         }
 
-        protected bool CheckIfPlayerWon()
+        protected bool checkIfPlayerWon()
         {
             foreach(bool hitResult in guessArray) 
             {
@@ -193,10 +189,19 @@ namespace Hangman
             return true; 
         }
 
-        protected int CountPlayerScore()
+        protected int countPlayerScore()
         {
-            int score = scoreWeights.LetterWeight * drawnPair.Value.Length + scoreWeights.LiveWeight * lives - scoreWeights.TimeWeight * (int)elapsedTime;
+            int score = scoreWeights.letterWeight * drawnPair.Value.Length + scoreWeights.liveWeight * lives - scoreWeights.timeWeight * (int)elapsedTime;
+            if (score <= 0)
+                score = 0;
+
             return score;
+        }
+
+        public string EnterInput()
+        {
+            Console.Write(">>>>>>> ");
+            return Console.ReadLine();
         }
     }
 }
