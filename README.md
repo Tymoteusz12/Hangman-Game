@@ -131,7 +131,7 @@ Please enter your city guess:
         Enter 1 to play again or enter 0 to exit game.
 >>>>>>> 0
         Thank you for playing!
-
+```
 ### My motivations
 
 When I started programming my main motivation was curiosity. 
@@ -147,7 +147,8 @@ I used it few times for creating very simple 2D/3D simulations.
 I think writting code is just something I like. 
 I want to solve tasks, develop my self and keep my brain as sharpest as possible.
 I choosed backend path due to my small interest in cybersecurity. 
-Also I tried some Front-end, but it was a little bit to high level - I prefer coding on lower levels and closer to the machines\servers. 
+Also I tried some Front-end, but it was a little bit to high level - I prefer coding 
+on lower levels and closer to the machines\servers. 
 
 I must not hide, that Motorola Academy started to interest me. 
 600 hours of programming knowledge from profesionals! 
