@@ -1,7 +1,7 @@
 # Hangman-Game
 
-#### H4Message for Motorola:
-#### H4At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
+Message for Motorola:
+At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
 
 # H1Very simple Hangman Game. 
 
