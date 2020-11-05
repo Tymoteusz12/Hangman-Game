@@ -122,7 +122,8 @@ Please enter your city guess:
 >>>>>>> 1
         Enter your name:
 >>>>>>> Tymoteusz
-
+        I saved your score to the table of glory!
+        
         The game has ended. Would you like to play again?
         Enter 1 to play again or enter 0 to exit game.
 >>>>>>> 0
