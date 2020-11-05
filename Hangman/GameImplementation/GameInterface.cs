@@ -25,7 +25,7 @@ namespace Hangman
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             restartAllStates();
-            startGameLoop();
+            mainGameLoop();
             watch.Stop();
             elapsedTime = watch.ElapsedMilliseconds / 1000;
             displayFinalResult(checkIfPlayerWon());
@@ -36,7 +36,7 @@ namespace Hangman
             isRunning = false;
         }
 
-        private void startGameLoop()
+        private void mainGameLoop()
         {
             bool playerWon = false;
             while (lives > 0 && !playerWon)
