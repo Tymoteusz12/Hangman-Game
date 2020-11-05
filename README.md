@@ -138,10 +138,13 @@ Please enter your city guess:
 When I started programming my main motivation was curiosity. 
 I felt like it is possible for me and I would like to be good at something. 
 I knew that I have predispositions for science and I planned to start programming. 
-I had friends who were into coding and they inspired me. Also I liked new technologies and all this stuff. 
+I have brother and friends who are into coding and they inspired me. I also like new technologies and all this stuff. 
+This is something I want to be closer with.
 
 I love to solve mental tasks, even though they are sometimes tough. 
 Honestly - the harder task seems for me - the more I like it.
+Only constantly growing difficulty ensures for personal/mental grow.
+
 I am also passionated about physics and during my programming journey 
 I used it few times for creating very simple 2D/3D simulations. 
 
@@ -149,10 +152,11 @@ I think writting code is just something I like.
 I want to solve tasks, develop my self and keep my brain as sharpest as possible.
 I choosed backend path due to my small interest in cybersecurity. 
 Also I tried some Front-end, but it was a little bit to high level - I prefer coding 
-on lower levels and closer to the machines\servers. 
+on lower levels and closer to the machines\servers.
 
-I also that money part behind programing is also important. 
-I want to ensure stable and comfortable future for me or/and for my future family. No doubts that programming is well paid job.
+I think that the money part behind programing is also important and I openly think so. 
+I want to ensure stable and comfortable future for me or/and for my future family. 
+No doubts that programming is well paid job.
 
 I must not hide, that Motorola Academy started to interest me. 
 600 hours of programming knowledge from profesionals! 
