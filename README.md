@@ -3,7 +3,7 @@
 Message for Motorola:
 At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
 
-# H1Very simple Hangman Game. 
+# Very simple Hangman Game. 
 
 After game starts, program will draw random capital city from given txt file. Your task is to guess the city! 
 You have 5 lives. At the beginning, every letter of drawn city will be displayed as single underscore.
