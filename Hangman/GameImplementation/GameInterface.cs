@@ -59,7 +59,7 @@ namespace Hangman
 
         public void showHighScore()
         {
-            Console.WriteLine("\n\t------------------------------------------ High score --------------------------------------------------- ");
+            Console.WriteLine("\n\n\t------------------------------------------ High score --------------------------------------------------- ");
             Console.WriteLine("\t| Name\t\t|\tDate\t\t|Elapsed time\t|Guessed city\t\t\t|\tScore\t|\n");
             
             string city;
@@ -79,7 +79,8 @@ namespace Hangman
             {
                 showWinInterface();
                 saveScore();
-                highScores = highScores.Take(10).ToList();
+                if(highScores.Count > 10)
+                    highScores = highScores.Take(10).ToList();
             }
 
             else
