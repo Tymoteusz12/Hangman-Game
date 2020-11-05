@@ -1,6 +1,9 @@
 # Hangman-Game
 
-Very simple Hangman Game. 
+### H3Message for Motorola:
+### H3At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
+
+# H1Very simple Hangman Game. 
 
 After game starts, program will draw random capital city from given txt file. Your task is to guess the city! 
 You have 5 lives. At the beginning, every letter of drawn city will be displayed as single underscore.
@@ -9,7 +12,7 @@ If you hit - underscore/s will be replaced with the corresponding letter/s of th
 
 If you win - your score will be saved in the table of glory! You can save your score in High scores table file and display it before game starts or after you win/lose.
 
-Below you can see example gameplay:
+#### H4Below you can see example gameplay:
 
 ```cmd
         Welcome to Hangman game! Would you like to proceed?
@@ -128,3 +131,10 @@ Please enter your city guess:
         Enter 1 to play again or enter 0 to exit game.
 >>>>>>> 0
         Thank you for playing!
+
+When I started programming my main motivation was curiosity. I felt like it is possible for me and I would like to be good at something. I knew that I have predispositions for science and I planned to start programming. I had friends who were into coding and they inspired me. Also I liked new technologies and all this stuff. 
+I love to solve mental tasks, even though they are sometimes tough. Honestly - the harder task seems for my mind - the more I like it.
+I am also passionated about physics and during my programming journey I used it few times for creating very simple 2D/3D simulations. 
+I think writting code is just something I like. I want to solve tasks, develop my self and keep my brain as sharpest as possible.
+I choosed backend due to my small interest in cybersecurity. Also I tried some Front-end, but it was a little bit to high level - I prefer coding on lower levels and closer to the machines\servers.  
+I must not hide, that Motorola Academy started to interest me. 600 hours of programming knowledge from profesionals! Big chance to learn a lot of stuff and start very interesting journey. I am highly motivated to face this up - no doubts!
