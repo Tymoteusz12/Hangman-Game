@@ -12,7 +12,7 @@ If you hit - underscore/s will be replaced with the corresponding letter/s of th
 
 If you win - your score will be saved in the table of glory! You can save your score in High scores table file and display it before game starts or after you win/lose.
 
-#### H4Below you can see example gameplay:
+#### Below you can see example gameplay:
 
 ```cmd
         Welcome to Hangman game! Would you like to proceed?
