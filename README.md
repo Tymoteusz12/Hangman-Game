@@ -1,6 +1,6 @@
 # Hangman-Game
 
-###Message for Motorola:
+### Message for Motorola:
 At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
 
 # Very simple Hangman Game. 
