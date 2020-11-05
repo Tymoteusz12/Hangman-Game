@@ -1,6 +1,6 @@
 # Hangman-Game
 
-Message for Motorola:
+###Message for Motorola:
 At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
 
 # Very simple Hangman Game. 
@@ -132,9 +132,24 @@ Please enter your city guess:
 >>>>>>> 0
         Thank you for playing!
 
-When I started programming my main motivation was curiosity. I felt like it is possible for me and I would like to be good at something. I knew that I have predispositions for science and I planned to start programming. I had friends who were into coding and they inspired me. Also I liked new technologies and all this stuff. 
-I love to solve mental tasks, even though they are sometimes tough. Honestly - the harder task seems for my mind - the more I like it.
-I am also passionated about physics and during my programming journey I used it few times for creating very simple 2D/3D simulations. 
-I think writting code is just something I like. I want to solve tasks, develop my self and keep my brain as sharpest as possible.
-I choosed backend due to my small interest in cybersecurity. Also I tried some Front-end, but it was a little bit to high level - I prefer coding on lower levels and closer to the machines\servers.  
-I must not hide, that Motorola Academy started to interest me. 600 hours of programming knowledge from profesionals! Big chance to learn a lot of stuff and start very interesting journey. I am highly motivated to face this up - no doubts!
+### My motivations
+
+When I started programming my main motivation was curiosity. 
+I felt like it is possible for me and I would like to be good at something. 
+I knew that I have predispositions for science and I planned to start programming. 
+I had friends who were into coding and they inspired me. Also I liked new technologies and all this stuff. 
+
+I love to solve mental tasks, even though they are sometimes tough. 
+Honestly - the harder task seems for my mind - the more I like it.
+I am also passionated about physics and during my programming journey 
+I used it few times for creating very simple 2D/3D simulations. 
+
+I think writting code is just something I like. 
+I want to solve tasks, develop my self and keep my brain as sharpest as possible.
+I choosed backend path due to my small interest in cybersecurity. 
+Also I tried some Front-end, but it was a little bit to high level - I prefer coding on lower levels and closer to the machines\servers. 
+
+I must not hide, that Motorola Academy started to interest me. 
+600 hours of programming knowledge from profesionals! 
+Big chance to learn a lot of stuff and start very interesting journey. 
+I am highly motivated to face this up - no doubts!
