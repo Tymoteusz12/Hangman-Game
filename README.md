@@ -1,13 +1,13 @@
 # Hangman-Game
 
 ### Message for Motorola:
-At the end of this Readme I added few extra words about my motivations for programming. This repository is going to be public until 12.11.
+At the end of this Readme I added few extra words about what motivates me in my programing journey. This repository is going to be public until 12.11.
 
 # Very simple Hangman Game. 
 
 After game starts, program will draw random capital city from given txt file. Your task is to guess the city! 
 You have 5 lives. At the beginning, every letter of drawn city will be displayed as single underscore.
-You can either enter whole city - but if you miss, you will lose 2 lives, or enter single letter. Miss of single letter will result in lose of 1 live. 
+You can either enter whole city - but if you miss, you will lose 2 lives, or enter single letter - but miss of single letter will result in lose of 1 live. 
 If you hit - underscore/s will be replaced with the corresponding letter/s of the city. 
 
 If you win - your score will be saved in the table of glory! You can save your score in High scores table file and display it before game starts or after you win/lose.
@@ -116,10 +116,11 @@ Please enter your city guess:
 
         ------------------------------------------ High score ---------------------------------------------------
         | Name          |       Date            |Elapsed time   |Guessed city                   |       Score   |
-
+        | Tymoteus...   | 05.11.2020 12:51:09   |        23     | Kuala lumpur                  |       1154    |
         | Tymoteusz...  | 05.11.2020 12:57:30   |        18     | Tehran                        |       588     |
         | Tymoteusz...  | 05.11.2020 12:52:16   |        14     | Cairo                         |       500     |
-        | Tymoteus...   | 05.11.2020 12:51:09   |        23     | Kuala lumpur                  |       1154    |
+        
+        
 
         Would you like to save your score? Enter 1 for yes, enter 0 for no:
 >>>>>>> 1
@@ -140,7 +141,7 @@ I knew that I have predispositions for science and I planned to start programmin
 I had friends who were into coding and they inspired me. Also I liked new technologies and all this stuff. 
 
 I love to solve mental tasks, even though they are sometimes tough. 
-Honestly - the harder task seems for my mind - the more I like it.
+Honestly - the harder task seems for me - the more I like it.
 I am also passionated about physics and during my programming journey 
 I used it few times for creating very simple 2D/3D simulations. 
 
@@ -150,8 +151,8 @@ I choosed backend path due to my small interest in cybersecurity.
 Also I tried some Front-end, but it was a little bit to high level - I prefer coding 
 on lower levels and closer to the machines\servers. 
 
-I also think that making money from programming is also important.
-I want to ensure stable and comfortable future for me. Programming is well paid job.
+I also that money part behind programing is also important. 
+I want to ensure stable and comfortable future for me or/and for my future family. No doubts that programming is well paid job.
 
 I must not hide, that Motorola Academy started to interest me. 
 600 hours of programming knowledge from profesionals! 
