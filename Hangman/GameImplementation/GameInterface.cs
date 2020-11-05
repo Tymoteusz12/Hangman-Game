@@ -67,25 +67,24 @@ namespace Hangman
                 if (scoreInstance.city.Length < 6) scoreInstance.city = scoreInstance.city + "\t";
                 Console.WriteLine("\t| " + scoreInstance.name + " \t| " + scoreInstance.date + " \t|\t " + scoreInstance.time + "\t| " + scoreInstance.city + "\t\t\t|\t" + scoreInstance.score + "\t|");
             }
+
+            Console.WriteLine("\n\n");
         }
 
         private void displayFinalResult(bool playerWon)
         {
             Console.Clear();
-
+            showHighScore();
             if (playerWon)
             {
                 showWinInterface();
-                showHighScore();
                 saveScore();
                 highScores = highScores.Take(10).ToList();
             }
 
             else
-            {
-                showHighScore();
                 showLoseInterface();
-            }
+
         }
 
         private void showWinInterface()
@@ -100,10 +99,11 @@ namespace Hangman
         private void saveScore()
         {
             Console.WriteLine("\n\tWould you like to save your score? Enter 1 for yes, enter 0 for no: ");
-            switch (Console.ReadLine())
+            switch (EnterInput())
             {
                 case "1":
                     enterData();
+                    Console.WriteLine("\tI saved your score to the table of glory!\n");
                     break;
                 case "0":
                     break;
@@ -175,12 +175,12 @@ namespace Hangman
 
         private void drawHangman()
         {
-            int position;
+            int stage;
             if (lives >= 0)
-                position = 5 - lives;
+                stage = 5 - lives;
             else
-                position = 5;
-            Console.WriteLine(hangman[position]);
+                stage = 5;
+            Console.WriteLine(hangman[stage]);
         }
 
         private void letUserChooseTypeOfGuess()

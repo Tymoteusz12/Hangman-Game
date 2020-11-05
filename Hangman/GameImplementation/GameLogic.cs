@@ -25,7 +25,8 @@ namespace Hangman
         protected GameLogic(string filePath)
         {
             manageFiles = new FilesManager(filePath);
-            highScores = new List<Score>(manageFiles.scores).OrderByDescending(o => o.score).ToList();
+            highScores = new List<Score>(manageFiles.scores);
+            highScores = highScores.OrderByDescending(o => Int32.Parse(o.score)).ToList();
         }
 
         public void saveScoreToFile()
