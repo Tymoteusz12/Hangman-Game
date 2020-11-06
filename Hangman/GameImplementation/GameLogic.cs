@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Hangman
 {
-    class GameLogic
+    abstract class GameLogic
     {
         protected int lives;
         protected string stateMessage;
