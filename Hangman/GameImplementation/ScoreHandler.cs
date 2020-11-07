@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hangman
+﻿namespace Hangman
 { 
     class Score
     {
@@ -11,7 +7,6 @@ namespace Hangman
         public string time;
         public string city;
         public string score;
-
         public Score(string name, string date, string time, string city, string score)
         {
             this.name = name;
@@ -29,7 +24,6 @@ namespace Hangman
             this.timeWeight = timeWeight;
             this.letterWeight = letterWeight;
         }
-
         public int liveWeight;
         public int timeWeight;
         public int letterWeight;

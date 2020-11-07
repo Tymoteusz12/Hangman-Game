@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Hangman
 {
-    abstract class GameLogic
+    abstract class HangmanLogic
     {
         protected int lives;
         protected string stateMessage;
@@ -22,7 +22,7 @@ namespace Hangman
 
         protected List<Score> highScores;
 
-        protected GameLogic(string filePath)
+        protected HangmanLogic(string filePath)
         {
             manageFiles = new FilesManager(filePath);
             highScores = new List<Score>(manageFiles.scores);
@@ -67,6 +67,7 @@ namespace Hangman
             Console.WriteLine("\tPlease enter your single letter guess: ");
             string playerGuess = EnterInput();
             playerGuess = playerGuess.ToUpper();
+
             if (validateCharInput(playerGuess))
                 checkIfPlayerHit(playerGuess[0]);
         }
@@ -139,6 +140,7 @@ namespace Hangman
             Console.WriteLine("Please enter your city guess: ");
             string cityGuess = EnterInput();
             cityGuess = cityGuess.ToUpper();
+
             if (validateStringInput(cityGuess))
                 checkIfPlayerHit(cityGuess);
         }
@@ -150,6 +152,7 @@ namespace Hangman
                 stateMessage = "\n\tLooks like length of your input is invalid and doesn't match with hidden city. As a result you lost two lives!\n";
                 lives -= 2;
             }
+
             return playerInput.Length == drawnPair.Value.Length;
         }
 
@@ -180,16 +183,6 @@ namespace Hangman
                 missedCities.Add(playerInput);
         }
 
-        protected bool checkIfPlayerWon()
-        {
-            foreach(bool hitResult in guessArray) 
-            {
-                if (!hitResult)
-                    return false;
-            }
-            return true; 
-        }
-
         protected int countPlayerScore()
         {
             int score = scoreWeights.letterWeight * drawnPair.Value.Length + scoreWeights.liveWeight * lives - scoreWeights.timeWeight * (int)elapsedTime;
@@ -203,6 +196,13 @@ namespace Hangman
         {
             Console.Write(">>>>>>> ");
             return Console.ReadLine();
+        }
+
+        protected void takeTopTen()
+        {
+            highScores = highScores.OrderByDescending(o => Int32.Parse(o.score)).ToList();
+            if (highScores.Count > 10)
+                highScores = highScores.Take(10).ToList();
         }
     }
 }
